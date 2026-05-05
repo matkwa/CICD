@@ -57,3 +57,25 @@ def test_multiply(a, b, expected):
 def test_divide(a, b, expected):
     result = utils.divide(a, b)
     assert result == expected
+
+
+def test_binary_conversion_correctness():
+    """Testuje poprawność konwersji na system binarny."""
+    assert utils.to_binary(0) == "0"
+    assert utils.to_binary(10) == "1010"
+    assert utils.to_binary(100) == "1100100"
+
+
+def test_binary_conversion_range():
+    """Testuje, czy funkcja rzuca błąd dla liczb poza zakresem 0-100."""
+    with pytest.raises(ValueError):
+        utils.to_binary(-1)
+
+    with pytest.raises(ValueError):
+        utils.to_binary(101)
+
+
+def test_binary_conversion_type():
+    """Testuje, czy funkcja rzuca błąd dla liczb z częścią dziesiętną."""
+    with pytest.raises(TypeError):
+        utils.to_binary(10.5)
